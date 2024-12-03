@@ -5,13 +5,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Value } from "@prisma/client/runtime/library";
 
 interface iAppProops {
   title: string;
   overview: string;
   youtubeUrl: string;
   state: boolean;
-  changeState: any;
+  changeState: (value: boolean) => void;
   release: number;
   age: number;
   duration: number;
