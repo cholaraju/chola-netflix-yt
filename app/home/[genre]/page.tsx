@@ -1,4 +1,4 @@
-import { MovieCard } from "@/app/components/MovieCaard";
+import MovieCard from "@/app/components/MovieCaard";
 import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
 import { getServerSession } from "next-auth";
@@ -119,7 +119,7 @@ export default async function CategoryPage({
                 overview={movie.overview}
                 time={movie.duration}
                 title={movie.title}
-                wachtListId={movie.WatchLists[0]?.id}
+                watchListId={movie.WatchLists[0]?.id}
                 watchList={movie.WatchLists.length > 0 ? true : false}
                 year={movie.release}
                 youtubeUrl={movie.youtubeString}
