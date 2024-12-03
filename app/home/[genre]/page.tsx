@@ -1,7 +1,7 @@
+import { MovieCard } from "@/app/components/MovieCaard";
+import { authOptions } from "@/app/utils/auth";
 import prisma from "@/app/utils/db";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/utils/auth";
-import MovieCard from "@/app/components/MovieCaard";
 import Image from "next/image";
 
 async function getData(category: string, userId: string) {
@@ -90,39 +90,39 @@ export default async function CategoryPage({
 }) {
   const session = await getServerSession(authOptions);
   const data = await getData(params.genre, session?.user?.email as string);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-5 sm:px-0 mt-10 gap-6">
       {data.map((movie) => (
         <div key={movie.id} className="relative h-60">
           <Image
             src={movie.imageString}
-            alt="movie"
-            className="rounded-sm absolute w-full h-full object-cover"
+            alt="Movie"
             width={500}
             height={400}
-            object-cover
-            priority
+            className="rounded-sm absolute w-full h-full object-cover"
           />
           <div className="h-60 relative z-10 w-full transform transition duration-500 hover:scale-125 opacity-0 hover:opacity-100">
-            <div className="bg-gradient-to-b from-transparent via-black/50 to-black z-10 w-full h-full  flex items-center  justify-center  rounded-lg">
+            <div className="bg-gradient-to-b from-transparent via-black/50 to-black z-10 w-full h-full rounded-lg flex items-center justify-center">
               <Image
                 src={movie.imageString}
-                alt="movie"
+                alt="Movie"
                 width={800}
                 height={800}
                 className="absolute w-full h-full -z-10 rounded-lg object-cover"
               />
+
               <MovieCard
                 key={movie.id}
                 age={movie.age}
-                title={movie.title}
-                overview={movie.overview}
-                watchList={movie.WatchLists.length > 0 ? true : false}
-                watchListId={movie.WatchLists[0]?.id}
-                youtubeUrl={movie.youtubeString as string}
-                time={movie.duration}
-                year={movie.release}
                 movieId={movie.id}
+                overview={movie.overview}
+                time={movie.duration}
+                title={movie.title}
+                wachtListId={movie.WatchLists[0]?.id}
+                watchList={movie.WatchLists.length > 0 ? true : false}
+                year={movie.release}
+                youtubeUrl={movie.youtubeString}
               />
             </div>
           </div>
