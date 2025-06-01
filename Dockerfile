@@ -20,6 +20,9 @@ COPY .yarn .yarn
 RUN yarn set version 3.6.4
 RUN yarn install
 
+# Needed for Yarn PnP to resolve binaries like `next`
+ENV NODE_OPTIONS=--require=.pnp.cjs
+
 # Copy remaining files
 COPY . .
 
