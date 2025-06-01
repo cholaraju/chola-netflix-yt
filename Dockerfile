@@ -9,13 +9,12 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Copy dependency files
-COPY package.json yarn.lock .yarnrc.yml ./
+# COPY only the necessary files
+COPY package.json yarn.lock ./
 
 RUN yarn set version 3.6.4
 RUN yarn install
 
-# Copy app files
 COPY . .
 
 RUN yarn prisma generate || true
@@ -31,3 +30,4 @@ EXPOSE 3000
 ENV NODE_ENV=production
 
 CMD ["yarn", "start"]
+
