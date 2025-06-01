@@ -1,12 +1,14 @@
 {
     "name": "chola-netflix-yt",
+    "version": "1.0.0",
+    "private": true,
     "packageManager": "yarn@4.9.1",
     "scripts": {
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "prisma": "prisma" // optional, for local dev convenience
+        "prisma": "prisma"
     },
     "dependencies": {
         "next": "^14.1.0",
@@ -14,6 +16,6 @@
         "react-dom": "^18.2.0"
     },
     "devDependencies": {
-        "prisma": "^5.9.0" // or the version you're using
+        "prisma": "^5.9.0"
     }
 }
