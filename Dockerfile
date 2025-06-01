@@ -12,16 +12,13 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Copy dependency files including .pnp.cjs for Yarn PnP
-COPY package.json yarn.lock .yarnrc.yml .pnp.cjs ./
+# Copy dependency files (no .pnp.cjs because PnP is not used)
+COPY package.json yarn.lock .yarnrc.yml ./
 COPY .yarn .yarn
 
 # Set Yarn version and install dependencies
 RUN yarn set version 3.6.4
 RUN yarn install
-
-# Needed for Yarn PnP to resolve binaries like `next`
-ENV NODE_OPTIONS=--require=.pnp.cjs
 
 # Copy remaining files
 COPY . .
