@@ -12,11 +12,11 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Copy dependency files
-COPY package.json yarn.lock .yarnrc.yml ./
+# Copy dependency files including .pnp.cjs for Yarn PnP
+COPY package.json yarn.lock .yarnrc.yml .pnp.cjs ./
 COPY .yarn .yarn
 
-# Set Yarn version and install deps
+# Set Yarn version and install dependencies
 RUN yarn set version 3.6.4
 RUN yarn install
 
