@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Copy dependency files (no .pnp.cjs because PnP is not used)
+# Copy dependency files
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY .yarn .yarn
 
@@ -23,8 +23,8 @@ RUN yarn install
 # Copy remaining files
 COPY . .
 
-# Generate Prisma client (tolerate failures in CI)
-RUN yarn prisma generate || true
+# Generate Prisma client (use npx instead of yarn)
+RUN npx prisma generate || true
 
 # Build the app
 RUN yarn build
